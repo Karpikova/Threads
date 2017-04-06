@@ -1,20 +1,21 @@
 package com.company;
 
-
-import java.util.concurrent.Exchanger;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        Message msg = new Message("обработать");
+        Message msg = new Message(0);
 
         EverySecond everySecond = new EverySecond(msg);
         Thread everySecondThread = new Thread(everySecond);
-        everySecondThread.run();
+        everySecondThread.start();
 
-        MessageFiveSec messageFiveSec = new MessageFiveSec(msg);
+        MessageNSec messageFiveSec = new MessageNSec(msg, 5, "Долгожданный message");
         Thread messageFiveSecThread = new Thread(messageFiveSec);
-        messageFiveSecThread.run();
+        messageFiveSecThread.start();
+
+        MessageNSec messageSevenSec = new MessageNSec(msg, 7, "Не столь долгожданный message");
+        Thread messageSevenSecThread = new Thread(messageSevenSec);
+        messageSevenSecThread.start();
     }
 }

@@ -10,17 +10,17 @@ package com.company;/*
 
 public class Message {
 
-    private String msg;
+    private int message;
 
-    public Message(String str){
-        this.msg=str;
+    public Message(int str){
+        this.message =str;
     }
 
-    public String getMsg() {
-        return msg;
+    public int getMessage() {
+        return message;
     }
 
-    public void setMsg(String str) {
-        this.msg=str;
+    public void setMessage(int str) {
+        this.message =str;
     }
 }

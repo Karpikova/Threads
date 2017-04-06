@@ -12,23 +12,23 @@ import java.util.Date;
 
 public class EverySecond implements Runnable {
 
-    private Message msg;
+    private Message messageToAnotherThread;
 
     public EverySecond(Message msg) {
-        this.msg = msg;
+        this.messageToAnotherThread = msg;
     }
 
     @Override
     public void run() {
-        String difftime;
+        int difftime;
         Date startDate = new Date();
         while (true){
             Date currDate = new Date();
-            difftime = String.valueOf((int)(currDate.getTime() - startDate.getTime())/1000);
-            System.out.println(difftime);
-            synchronized (msg) {//хотябы просто чтобы уходило хоть что-то
-                msg.setMsg("2");
-                msg.notifyAll();
+            difftime = (int)(currDate.getTime() - startDate.getTime())/1000;
+            System.out.println(String.valueOf(difftime));
+            synchronized (messageToAnotherThread) {
+                messageToAnotherThread.setMessage(difftime);
+                messageToAnotherThread.notifyAll();
             }
 
             try {
