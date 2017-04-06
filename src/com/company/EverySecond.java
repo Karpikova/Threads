@@ -25,7 +25,7 @@ public class EverySecond implements Runnable {
         while (true){
             Date currDate = new Date();
             difftime = (int)(currDate.getTime() - startDate.getTime())/1000;
-            System.out.println(String.valueOf(difftime));
+            System.out.println(difftime);
             synchronized (messageToAnotherThread) {
                 messageToAnotherThread.setMessage(difftime);
                 messageToAnotherThread.notifyAll();

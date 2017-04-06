@@ -12,7 +12,7 @@ package com.company;/*
 public class MessageNSec implements Runnable {
 
     private Message messageFromAnotherThread;
-    private static int countSec;
+    private int countSec;
     private String  messageToTell;
 
     public MessageNSec(Message m, int countSec, String messageToTell){
@@ -29,6 +29,7 @@ public class MessageNSec implements Runnable {
                 try {
                     messageFromAnotherThread.wait();
                     if (messageFromAnotherThread.getMessage()%countSec == countSec-1)
+                    //if (messageFromAnotherThread.getMessage()==countSec)
                     {
                         System.out.println(messageToTell);
             try {
